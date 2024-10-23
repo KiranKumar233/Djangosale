@@ -1,0 +1,235 @@
+{% extends 'adminbase.html' %}
+{% block b2 %}
+
+
+
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lemon&family=Merriweather:wght@700&family=Salsa&display=swap');
+        .dashbody {
+            font-family: 'Merriweather', serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+        }
+
+        .container-dashboard {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .row-dashboard {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .col-custom {
+            flex: 1 0 25%;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .rectangle-container {
+            text-align: center;
+        }
+
+        .rectangle-custom {
+            width: 100%;
+            padding-top: 60%;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .circle-custom {
+            width: 80%;
+            padding-top: 40%;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid black;
+        }
+
+        .text-custom {
+            color: black;
+            font-size: 15px;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .text-custom a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+        }
+              /* Media Queries */
+      @media (max-width: 1200px) {
+          .col-custom {
+              flex: 1 0 33.33%;
+          }
+      }
+
+      @media (max-width: 768px) {
+          .col-custom {
+              flex: 1 0 50%;
+          }
+      }
+
+      @media (max-width: 576px) {
+          .col-custom {
+              flex: 1 0 100%;
+          }
+      }
+
+    </style>
+    <title>Dashboard</title>
+</head>
+
+<body class="dashbody">
+
+    <div class="container-dashboard">
+        <div class="row-dashboard">
+            <div class="col-custom">
+                <div class="rectangle-container">
+                    <div class="rectangle-custom">
+                        <div class="circle-custom">
+                            <p class="text-custom"><a href="propertyreport">Property Report</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-custom">
+                <div class="rectangle-container">
+                    <div class="rectangle-custom">
+                        <div class="circle-custom">
+                            <p class="text-custom"><a href="propertytypereport">Property Type <br> Report</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-custom">
+                <div class="rectangle-container">
+                    <div class="rectangle-custom">
+                        <div class="circle-custom">
+                            <p class="text-custom"><a href="statusreport">Status Report</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-custom">
+                <div class="rectangle-container">
+                    <div class="rectangle-custom">
+                        <div class="circle-custom">
+                            <p class="text-custom"><a href="{% url 'customer_report' %}">Customer Report</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-custom">
+                <div class="rectangle-container">
+                    <div class="rectangle-custom">
+                        <div class="circle-custom">
+                            <p class="text-custom"><a href="{% url 'enquiry_report' %}">Enquiry Report</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-custom">
+                <div class="rectangle-container">
+                    <div class="rectangle-custom">
+                        <div class="circle-custom">
+                            <p class="text-custom"><a href="addnew">Add  Report</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-custom">
+                <div class="rectangle-container">
+                    <div class="rectangle-custom">
+                        <div class="circle-custom">
+                            <p class="text-custom"><a href="addstatus">Add Status </a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-custom">
+                <div class="rectangle-container">
+                    <div class="rectangle-custom">
+                        <div class="circle-custom">
+                            <p class="text-custom"><a href="addnewpropertytype"> Add Property <br> Type</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-custom">
+                <div class="rectangle-container">
+                    <div class="rectangle-custom">
+                        <div class="circle-custom">
+                            <p class="text-custom"><a href="myaccount">My Account</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-custom">
+                <div class="rectangle-container">
+                    <div class="rectangle-custom">
+                        <div class="circle-custom">
+                            <p class="text-custom"><a href="changep">Change Password</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-custom">
+                <div class="rectangle-container">
+                    <div class="rectangle-custom">
+                        <div class="circle-custom">
+                            <p class="text-custom"><a href="#">Settings</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-custom">
+                <div class="rectangle-container">
+                    <div class="rectangle-custom">
+                        <div class="circle-custom">
+                            <p class="text-custom"><a href="logout">Logout</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+
+</html>
+{% endblock %}

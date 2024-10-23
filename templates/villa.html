@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block b1 %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Your Page Title</title>
+
+
+    <!-- Add the link to the Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+
+    <style>
+        .custom-body {
+            font-family: 'Roboto', sans-serif;
+
+            background-color: #f8f9fa;
+        }
+
+        .property-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 0 10px;
+        }
+
+        .property-card {
+            width: 30%;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .property-card:hover {
+            transform: scale(1.03);
+        }
+
+        .property-image {
+            width: 100%;
+            height: 200px; /* Set a fixed height for the images */
+            object-fit: cover; /* Maintain aspect ratio and cover the container */
+            display: block;
+        }
+
+
+        .property-details {
+            padding: 16px;
+        }
+
+        .property-name {
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .property-info {
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .view-details-btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .property-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="custom-body">
+    <div class="property-container mt-2">
+        {% for villa in villas %}
+        <div class="property-card">
+            <img src="{{villa.property_image.url}}" alt="Property Image" class="property-image">
+            <div class="property-details">
+                <h4 class='property-name'>{{villa.property_name}} - {{villa.status_name}}</h4>
+                <p class='property-info'>Rs.{{villa.property_cost}} - {{villa.property_type}}</p>
+                <div class="text-center">
+                  <a href="{% url 'viewdetails' villa.id %}" class='view-details-btn'>View Details</a>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
+{% endblock %}

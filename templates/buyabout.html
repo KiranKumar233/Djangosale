@@ -1,0 +1,212 @@
+{% extends 'buybase.html' %}
+{% block b3 %}
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+</head>
+<style>
+
+.desc {
+color: #800000;
+}
+.c1 {
+margin-top: 80px;
+}
+.c2 {
+margin-top: 80px;
+}
+.description {
+color: black;
+font-family: 'Arial', sans-serif;
+}
+.ab1{
+margin-bottom: -50px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+    footer{
+      font-family:'Merriweather', serif;
+    }
+
+    .footer-head{
+      color: #351F39;
+    }
+    .footer-p{
+      color: white ;
+    }
+
+    .footer-a {
+      color: white;
+    }
+    .bottom{
+        padding: 1.2rem;
+    }
+    .footer{
+        background-color: #106e69;
+    }
+
+    .shfooter .collapse {
+      display: inherit;
+    }
+    @media (max-width: 767px) {
+      .shfooter ul {
+        margin-bottom: 0;
+      }
+
+      .shfooter .collapse {
+        display: none;
+      }
+
+      .shfooter .collapse.show {
+        display: block;
+      }
+
+      .shfooter .title .fa-angle-up,
+      .shfooter .title[aria-expanded="true"] .fa-angle-down {
+        display: none;
+      }
+
+      .shfooter .title[aria-expanded="true"] .fa-angle-up {
+        display: block;
+      }
+
+      .shfooter .navbar-toggler {
+        display: inline-block;
+        padding: 0;
+      }
+    }
+
+    .resize {
+      text-align: center;
+    }
+     .resize {
+       margin-top: 3rem;
+      font-size: 1.25rem;
+    }
+    .fa-angle-double-right {
+      animation: rightanime 1s linear infinite;
+    }
+
+    .fa-angle-double-left {
+      animation: leftanime 1s linear infinite;
+    }
+
+    a:hover{
+      color: #0e0d06;
+    }
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+
+    nav{
+        background-color: #106e69;
+        font-family:'Merriweather', serif;
+
+    }
+    .nav-element{
+        color: white;
+
+    }
+    b:hover {
+    color: #0e0d06;
+    text-decoration: underline;
+}
+/* Apply blur effect to carousel images */
+      .outer-img {
+          filter: blur(3px); /* Adjust the blur amount as needed */
+      }
+
+      /* Container for placing an image inside a carousel image */
+      .image-inside-carousel {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 1; /* Ensure the inner image is above the blurred image */
+      }
+
+      /* Inner image style */
+      .inner-image {
+          width: 70%;
+          height: 70%;
+          margin-left:400px;
+          border-radius:10%;
+           /* Optional: For a circular inner image */
+      }
+      .caption{
+        margin-bottom: 5%;
+      }
+.content-container {
+padding: 20px;
+background-color: #f0f0f0;
+display: inline-block;
+}
+.hh1{
+padding: 10px;
+color: #20B2AA;
+margin-top: -3px;
+}
+#image-container {
+text-align: center;
+}
+.bordered-image {
+border: 2px solid black;
+margin: 5px;
+box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+cursor: pointer;
+transition: transform 0.4s ease, box-shadow 0.4s ease;
+margin-top: 20px;
+}
+.bordered-image:hover {
+transform: scale(1.1);
+}
+
+.desc {
+color: #800000;
+}
+.c1 {
+margin-top: 50px;
+}
+.c2 {
+margin-top: 100px;
+}
+.description {
+color: black;
+font-family: 'Arial', sans-serif;
+}
+.ab1{
+margin-bottom: -50px;
+}
+
+
+
+</style>
+
+   <body>
+
+  <h2 id="about-section" class="about-heading ab1 text-center">About</h2>
+  <div class="row">
+      <div class="col-md-4 c1 ">
+          <img src="{% static 'images/guru5.jpg'%}" alt="" width="100%" height="60%" class="bordered-image" onclick="showImageDescription(this)">
+      </div>
+      <div class="col-md-8 c2">
+          <p class="description">Real Estate Management System (REMS) is an online real estate software application that manages the overall operational activities and processes, starting from the management of the property, to the management of real estate agencies, agents, clients and financial transactions. It provides comprehensive reports for managing the Real Estate agency performance and efficiency, and enables the management for better decision-making.In a Property Sale Management System, let's consider a commercial property with the ID CP789, located at 456 Business Avenue in Metropolis City. This 5,000 sq. ft. commercial office space, listed by Agent Sarah Johnson (Agent ID 987) on February 5, 2024 (Listing ID L456), boasts features like open workspaces and conference rooms. XYZ Corporation is the buyer, and the seller is Commercial Real Estate Holdings LLC. The property was sold for $1,150,000 in installments over 12 months, with a sale date of April 15, 2024. Legal documents, including commercial lease agreements and an inspection report received on March 10, 2024, are part of the transaction. Agent Sarah Johnson, known for her expertise in commercial real estate, earned a 2.5% commission. User accounts involve an admin, Sarah Johnson, XYZ Corporation as the buyer, and Commercial Real Estate Holdings LLC as the seller. Communication records include negotiation emails and notifications providing updates on payment schedules and crucial milestones. Analytics and reports track sales trends, financial analyses, and key performance metrics like occupancy rates and rental history. The calendar and scheduling system manage property tours and important dates such as the closing date and payment due dates. Feedback from XYZ Corporation highlights the property's appealing amenities, contributing to a positive 4.5-star review for Agent Sarah Johnson's professionalism. The marketing strategy involves online listings and targeted outreach to businesses, generating inquiries from companies seeking office space. Geolocation data ensures the property is accurately mapped within the commercial district of Metropolis City, providing insight into local market trends such as average rental rates for commercial properties in the area. This comprehensive approach showcases the intricate details managed within the Property Sale Management System for this commercial property.</p>
+      </div>
+  </div>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+{% endblock %}

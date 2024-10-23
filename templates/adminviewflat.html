@@ -1,0 +1,166 @@
+{% extends 'adminbase.html' %}
+{% block b2 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Internal CSS -->
+    <style>
+        /* Exact style from the original code */
+        .property-body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .property-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        .property-image-container {
+            flex: 1;
+            max-width: 50%;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .property-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .property-image:hover {
+            transform: scale(1.1);
+        }
+
+        .property-details-container {
+            flex: 1;
+            max-width: 50%;
+            padding: 20px;
+        }
+
+        .property-name {
+            color: #0066cc;
+            font-size: 28px;
+            margin-bottom: 30px;
+            margin-left: 150px;
+            margin-top: 20px;
+        }
+
+        .property-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: -20px;
+        }
+
+        .property-details-left,
+        .property-details-right {
+            width: 48%;
+        }
+
+        .property-info {
+            color: #555555;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        .property-contact-details,
+        .property-description {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .property-details p {
+            margin: 10px 0;
+        }
+
+        .property-go-back-link {
+            color: #009688;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .property-go-back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .property-container {
+                flex-direction: column;
+            }
+
+            .property-image-container,
+            .property-details-container {
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .property-details-left,
+            .property-details-right {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="property-body">
+    <div class="property-container">
+        <!-- Property Image -->
+        <div class="property-image-container">
+            <img src="{{ viewflat.property_image.url }}" alt="{{ viewflat.property_name }}" class="property-image">
+        </div>
+
+        <!-- Property Details -->
+        <div class="property-details-container">
+            <h2 class="property-name">{{ viewflat.property_name }}</h2>
+
+            <!-- Property Info -->
+            <div class="property-details">
+                <div class="property-details-left">
+                    <p class="property-info"><strong>Seller:</strong> {{ viewflat.seller_name }}</p>
+                    <p class="property-info"><strong>Type:</strong> {{ viewflat.property_type }}</p>
+                    <p class="property-info"><strong>Status:</strong> {{ viewflat.status_name }}</p>
+                    <p class="property-info"><strong>Cost:</strong> {{ viewflat.property_cost }}</p>
+                    <p class="property-info"><strong>Size:</strong> {{ viewflat.property_size }}</p>
+                    <p class="property-info property-contact-details"><strong>Contact Details:</strong> {{ viewflat.seller_contact_details }}</p>
+                    <p class="property-info"><strong>Email:</strong> {{ viewflat.email_property }}</p>
+                </div>
+                <div class="property-details-right">
+                    <p class="property-info"><strong>Amenities:</strong> {{ viewflat.property_amenities }}</p>
+                    <p class="property-info"><strong>Specifications:</strong> {{ viewflat.property_specifications }}</p>
+                    <p class="property-info"><strong>Total Rooms:</strong> {{ viewflat.property_total_rooms }}</p>
+                    <p class="property-info"><strong>Balcony:</strong> {{ viewflat.property_balcony }}</p>
+                    <p class="property-info"><strong>Total Bathrooms:</strong> {{ viewflat.property_total_bathrooms }}</p>
+                    <p class="property-info"><strong>Address:</strong> {{ viewflat.property_address }}</p>
+                    <p class="property-info property-description"><strong>Description:</strong> {{ viewflat.property_description }}</p>
+                </div>
+            </div>
+
+            <!-- Anchor tag to go back -->
+            <div class="offset-md-4 col-md-4">
+              <a href="{% url 'enquiry_report' %}" class="property-go-back-link">Go Back</a>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

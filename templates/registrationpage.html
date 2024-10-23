@@ -1,0 +1,211 @@
+
+
+
+{% extends 'base.html' %}
+{% block b1 %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Customer Registration</title>
+    <style>
+        .custom-body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .registration-container {
+            padding-top: 20px;
+        }
+
+        .registration-header {
+            text-align: left;
+        }
+
+        .registration-form {
+            box-shadow: 5px 5px 15px #888888;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-top: 15px;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+        }
+
+        .login-link {
+            color: #007bff;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .eye-icon {
+            cursor: pointer;
+        }
+
+        .eye-icon i {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body class="custom-body">
+    <div class="container-fluid registration-container">
+        <div class="row">
+            <div class="offset-md-1 col-md-4 registration-header">
+                <h5>Customer Registration</h5>
+            </div>
+        </div>
+        <form class="offset-md-2 col-md-8 registration-form" action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row bg-primary">
+                <h3 class="offset-md-4 text-white" style='border-radius:50%'>Add Register to Account</h3>
+            </div>
+            <div class="row">
+                <div class="offset-md-1 col-md-4 form-group">
+
+                  {% if msg2%}
+                  <p>{{msg2}}</p>
+                  {%endif%}
+                    <label class="form-label" for="">User name:</label>
+                    <input type="text" name="client_name" value="" class='form-control' required>
+                </div>
+                <div class="offset-md-2 col-md-4 form-group">
+                  {% if msg %}
+                  <p>{{msg}}</p>
+                  {% endif %}
+                    <label class="form-label" for="">Login ID:</label>
+                    <input type="text" name="client_login_id" value="" class='form-control' required>
+                </div>
+            </div>
+
+            <!-- Continue with other form fields -->
+
+            <div class="row">
+                <div class="offset-md-1 col-md-4 form-group">
+                    {% if message %}
+                    <p>{{message}}</p>
+                    {% endif %}
+                    <label class="form-label" for="">Enter password</label>
+                    <div class="input-group">
+                        <input type="password" name="client_password" id="password" class="form-control"
+                            placeholder="Password" required>
+                        <div class="input-group-append">
+                            <span toggle="#password" class="eye-icon input-group-text">
+                                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="offset-md-2 col-md-4 form-group">
+                  {%  if  msg3 %}
+                  <p>{{msg3}}</p>
+                  {% endif %}
+                    <label class="form-label" for="">Confirm Password:</label>
+                    <input type="password" name="client_confirm_password" id="confirmPassword"
+                        class='form-control' placeholder="Confirm Password" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-md-1 col-md-4 form-group">
+                    <label class="form-label" for="">Gender:</label>  <br>
+                    <input type="radio" name="client_gender" value="male"> Male
+                    <input type="radio" name="client_gender" value="female"> Female
+                </div>
+                <div class="offset-md-2 col-md-4 form-group">
+                    <label class="form-label" for="">Email ID:</label>
+                    <input type="email" name="client_email" value="" class='form-control' required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="offset-md-1 col-md-4 form-group">
+                    <label class="form-label" for="">Enter Mobile Number:</label>
+                    <input type="tel" name="client_number" value="" class='form-control' required pattern ='[6-9][0-9]{9}' title = 'please enter a valid phone number'>
+                </div>
+                <div class="offset-md-2 col-md-4 form-group">
+                    <label class="form-label" for="">Date of birth:</label>
+                    <input type="date" name="client_DOB" value="" class='form-control' required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="offset-md-1 col-md-4 form-group">
+                    <label class="form-label" for="">Enter Address1:</label>
+                    <input type="text" name="client_address1" value="" class='form-control' required>
+                </div>
+                <div class="offset-md-2 col-md-4 form-group">
+                    <label class="form-label" for="">Address2:</label>
+                    <input type="text" name="client_address2" value="" class='form-control' required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="offset-md-1 col-md-4 form-group">
+                    <label class="form-label" for="">User city:</label>
+                    <input type="text" name="client_city" value="" class='form-control' required>
+                </div>
+                <div class="offset-md-2 col-md-4 form-group">
+                    <label class="form-label" for="">User state:</label>
+                    <input type="text" name="client_state" value="" class='form-control' required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-md-1 col-md-4 form-group">
+                    <label class="form-label" for="">User country:</label>
+                    <input type="text" name="client_country" value="" class='form-control' required>
+                </div>
+                <div class="offset-md-2 col-md-4 form-group">
+                    <label class="form-label" for="">User Picture:</label>
+                    <input type="file" name="client_picture" value="" class='form-control' required>
+                </div>
+            </div>
+
+
+
+
+
+            <!-- Continue with other form fields -->
+
+            <div class="text-center submit-btn">
+                <input type="submit" class='btn btn-success' name="" value="Submit">
+                <input type="reset" class='btn btn-danger' name="" value="Clear">
+            </div>
+            <div class="text-center mt-1">
+                <span class=''>Already have an account ?<a href="{% url 'loginpage' %}" class='login-link'>&nbsp;
+                        Sign in</a></span>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.querySelector('.eye-icon');
+
+        eyeIcon.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            eyeIcon.children[0].classList.toggle('fa-eye');
+            eyeIcon.children[0].classList.toggle('fa-eye-slash');
+        });
+    });
+</script>
+
+</html>
+{% endblock %}

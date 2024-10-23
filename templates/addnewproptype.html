@@ -1,0 +1,111 @@
+{% extends 'adminbase.html' %}
+{% block b2 %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD TYPE</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lemon&family=Merriweather:wght@700&family=Salsa&display=swap');
+
+        .rectangle {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .input-box,
+        .textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .textarea {
+            height: 100px;
+        }
+
+        .submit-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .rectangle {
+                max-width: 600px;
+            }
+
+            .submit-button {
+                width: auto;
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .col {
+                flex: 1 0 50%;
+            }
+        }
+
+        @media only screen and (max-width: 576px) {
+            .col {
+                flex: 1 0 100%;
+            }
+        }
+    </style>
+</head>
+
+<body >
+
+    <div class="rectangle">
+        <div class="header">Add New Type</div>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <label for="status" class="label">Type Name:</label>
+            <input id="status" class="input-box" name="add_type_name" type="text" placeholder="Type">
+
+            <label for="description" class="label">Description:</label>
+            <textarea id="description" class="textarea" name="add_type_description" placeholder="Description"></textarea>
+
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+    </div>
+
+    
+</body>
+
+</html>
+{% endblock %}

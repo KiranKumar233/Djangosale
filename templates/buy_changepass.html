@@ -1,0 +1,110 @@
+{% extends 'buybase.html' %}
+
+{% block b3 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password</title>
+    <style>
+        /* Add your custom styles here */
+        .password-toggle {
+            position: relative;
+        }
+        .password-toggle .toggle-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center">Change Your Password Here</h2>
+            </div>
+        </div>
+        <form class="offset-md-2 col-md-8 registration-form" method="POST" action="{% url 'changepassword' %}" >
+            {% csrf_token %}
+            <div class="row bg-primary">
+                <h3 class=" text-white">Password Manager</h3>
+            </div>
+            <div class="text-center">
+                {% if message %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+                {% endif %}
+                {% if messages %}
+                {% for msg in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{ msg }}
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="row">
+              <div class="offset-md-2 col-md-4 form-group password-toggle">
+                  <label class="form-label" for="">Current password:</label>
+                  <div class="input-group">
+                      <input type="password" name="currentpassword" class='form-control'>
+                      <div class="toggle-icon" onclick="togglePasswordVisibility(this)">
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="offset-md-2 col-md-4 form-group password-toggle">
+                    <label class="form-label" for="">New password:</label>
+                    <div class="input-group">
+                        <input type="password" name="newpassword1" class='form-control'>
+                        <div class="toggle-icon" onclick="togglePasswordVisibility(this)">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-md-2 col-md-4 form-group password-toggle">
+                    <label class="form-label" for="">Confirm new password:</label>
+                    <div class="input-group">
+                        <input type="password" name="newpassword2" class='form-control'>
+                        <div class="toggle-icon" onclick="togglePasswordVisibility(this)">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center submit-btn">
+                <input type="submit" class='btn btn-success' value="Change Password">
+                <input type="reset" class='btn btn-danger' value="Cancel">
+            </div>
+        </form>
+    </div>
+
+    <!-- Add your scripts here if needed -->
+    <script>
+        function togglePasswordVisibility(icon) {
+            var input = icon.parentElement.querySelector('input');
+            if (input.type === "password") {
+                input.type = "text";
+                icon.querySelector('i').classList.remove('fa-eye');
+                icon.querySelector('i').classList.add('fa-eye-slash');
+            } else {
+                input.type = "password";
+                icon.querySelector('i').classList.remove('fa-eye-slash');
+                icon.querySelector('i').classList.add('fa-eye');
+            }
+        }
+    </script>
+</body>
+</html>
+{% endblock %}

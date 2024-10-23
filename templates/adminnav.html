@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+</head>
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Lemon&family=Merriweather:wght@700&family=Salsa&display=swap');
+
+    nav{
+      background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(14,174,87,1) 0%, rgba(12,116,117,1) 90% );
+
+    }
+    .nav-element{
+        color: white;
+
+    }
+    b:hover {
+    color: #0e0d06;
+    text-decoration: underline;
+}
+
+.upper{
+    color:white;
+    text-shadow: 2px 2px black;
+}
+.cname{
+    font-family: 'Lemon', serif;
+    font-family: 'Merriweather', serif;
+    font-family: 'Salsa', cursive;
+
+}
+.comp{
+  font-size:30px;
+  color: #0e0d06;
+
+}
+
+
+
+
+</style>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light">
+	  <div class="container-fluid">
+		<a class="navbar-brand text-white cname" href="{% url 'adminhome' %}"><p class="comp"><span class="upper">P</span>roperty <span class="upper">S</span>ales <span class="upper">M</span>anagement</p></a>
+		<button  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+		  <ul class="navbar-nav ">
+			<li class="nav-item">
+			  <a class="nav-link active ml-2" aria-current="page" href="{% url 'adminhome' %}"><b class="nav-element" >Home</b></a>
+			</li>
+			<li class="nav-item">
+        <a class="nav-link ml-2" href="{% url 'adminabout' %}"><b class="nav-element">About</b></a>
+
+			</li>
+            <li class="nav-item">
+                <a class="nav-link ml-2" href="{% url 'dashboard' %}"><b class="nav-element" >Dashboard</b></a>
+              </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle ml-2" href="#" id="navbardrop" data-toggle="dropdown">
+                 <b class="nav-element" >AddNew</b>
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'addnewproperty' %}">AddNew Property</a>
+                  <a class="dropdown-item" href="{% url 'addnewpropertytype' %}">AddNew Property Type</a>
+                  <a class="dropdown-item" href="{% url 'addstatus' %}">AddNew Status</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle ml-2" href="#" id="navbardrop" data-toggle="dropdown">
+                           <b class="nav-element">Reports</b>
+                       </a>
+                       <div class="dropdown-menu">
+                           <a class="dropdown-item" href="{% url 'propertyreport' %}">Property Report</a>
+                           <a class="dropdown-item" href="{% url 'statusreport' %}">Status Report</a>
+                           <a class="dropdown-item" href="{% url 'propertytypereport' %}">Property Type Report</a>
+                           <a class="dropdown-item" href="{% url 'enquiry_report' %}">Enquiry Report</a>
+                           <a class="dropdown-item" href="{% url 'customer_report' %}">Customer Report</a>
+                       </div>
+                   </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle ml-2" href="#" id="navbardrop" data-toggle="dropdown">
+                 <b class="nav-element" >My Accounts</b>
+                </a>
+                <div class="dropdown-menu">
+                 <a class="dropdown-item" href="{% url 'myaccount' %}">Accounts Details</a>
+                 <a class="dropdown-item" href="{% url 'changepassword' %}">Change Password</a>
+
+                </div>
+              </li>
+              <li>
+                {% if user.is_authenticated %}
+                <button id="username" style="margin-top: 11px; background-color:rgb(171,219,227); color: black;"> <strong>Hello </strong>{{user.username}} </button>
+                {% endif %}
+            </li>
+            <!-- Inside your navigation bar, add the following code -->
+
+
+
+
+
+
+
+            <li class="nav-item">
+                <a class="nav-link ml-2" href="{% url 'logout' %}"><b class="nav-element" >Logout</b></a>
+            </li>
+
+
+		  </ul>
+		</div>
+	  </div>
+	</nav>
+
+
+
+</body>
+</html>

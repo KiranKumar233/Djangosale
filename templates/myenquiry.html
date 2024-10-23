@@ -1,0 +1,150 @@
+{% extends 'buybase.html' %}
+{% load static %}
+{% block b3 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+      body.enquiry-page {
+          margin: 0;
+          padding: 0;
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+      }
+
+      .enquiry-container {
+          max-width: 1400px;
+          margin: 20px auto;
+          background-color: #fff;
+          border-radius: 8px;
+      }
+
+      .enquiry-details {
+          padding: 20px;
+          box-sizing: border-box;
+          text-align: center; /* Center align content */
+      }
+
+      .enquiry-header {
+          margin-bottom: 20px;
+      }
+
+      .enquiry-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 20px;
+      }
+
+      .enquiry-th, .enquiry-td {
+          border: 1px solid #ddd;
+          padding: 15px;
+          text-align: center; /* Center align content */
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+      }
+
+      .enquiry-th {
+          background-color: #f2f2f2;
+      }
+
+      .enquiry-image {
+          width: 200px;
+          max-width: 400px;
+          height: 150px;
+          border-radius: 8px;
+      }
+
+      .enquiry-delete-btn {
+          display: block;
+          width: 100%;
+          text-align: center;
+          margin-top: 10px;
+          background-color: #dc3545;
+          color: #fff;
+          border: none;
+          padding: 10px;
+          cursor: pointer;
+          border-radius: 5px;
+      }
+
+      @media screen and (max-width: 768px) {
+          .enquiry-container {
+              border-radius: 0;
+          }
+
+          .enquiry-details {
+              padding: 10px;
+          }
+
+          .enquiry-th, .enquiry-td {
+              padding: 10px;
+              display: block;
+              width: 100%;
+          }
+
+          .enquiry-th {
+              text-align: center; /* Center align content */
+          }
+
+          .enquiry-td {
+              text-align: center; /* Center align content */
+              margin-bottom: 10px;
+          }
+      }
+  </style>
+
+</head>
+<body class="enquiry-page">
+    <div class="enquiry-container">
+        {% if send_enquiry %}
+            <div class="enquiry-details">
+                <h1 class="enquiry-header">Property Enquiry</h1>
+                <table class="enquiry-table">
+                  <thead class="thead-light">
+                  <tr>
+                      <th class="enquiry-th">ID</th>
+                      <th class="enquiry-th">Image</th>
+                      <th class="enquiry-th">Buyer Name</th>
+                      <th class="enquiry-th">Seller Name</th>
+                      <th class="enquiry-th">Email</th>
+                      <th class="enquiry-th">Buyer Mobile</th>
+                      <th class="enquiry-th">Date of Birth</th>
+                      <th class="enquiry-th">Property ID</th>
+                      <th class="enquiry-th">Enquiry Sent Date</th>
+                      <th class="enquiry-th">Actions</th>
+                  </tr>
+                  </thead>
+                    <tbody>
+                        {% for enquiry in send_enquiry %}
+                            <tr>
+                                <td class="enquiry-td">{{ enquiry.id }}</td>
+                                <td class="enquiry-td">
+                                    <img class="enquiry-image" src="{{ enquiry.buy_image.url }}" alt="Image">
+                                </td>
+                                <td class="enquiry-td">{{ enquiry.buyer_name }}</td>
+                                <td class="enquiry-td">{{ enquiry.seller_name }}</td>
+                                <td class="enquiry-td">{{ enquiry.buy_email }}</td>
+                                <td class="enquiry-td">{{ enquiry.buy_mobile }}</td>
+                                <td class="enquiry-td">{{ enquiry.buy_dob }}</td>
+                                <td class="enquiry-td">{{ enquiry.property_id }}</td>
+                                <td class="enquiry-td">{{ enquiry.sent_enquiry_on | date:"F j, Y" }}</td>
+                                <td class="enquiry-td">
+                                    <form action="{% url 'delete_enquiry' enquiry.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="enquiry-delete-btn">Delete</button>
+                                    </form>
+                                </td>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="enquiry-details">
+                <p>No property enquiry found.</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+{% endblock %}

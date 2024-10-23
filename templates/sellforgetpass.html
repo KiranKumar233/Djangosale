@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block b1 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/sign_up.css' %}">
+    <title>forgot-password</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center">Reset your password </h2>
+            </div>
+        </div>
+        <form class="offset-md-2 col-md-8 registration-form" method="POST" action="{% url 'sellforgetpass' %}" >
+            {% csrf_token %}
+            <div class="row bg-primary">
+                <h3 class=" text-white" >Password Manager</h3>
+            </div>
+            <div class="text-center">
+                {% if message %}
+                <strong >{{ message }}</strong>
+                {% endif %}
+            </div>
+            <div class="row">
+              <div class="offset-md-2 col-md-4 form-group">
+                  <label class="form-label" for="">Username</label>
+                  <input type="text" name="username" class='form-control' >
+              </div>
+            </div>
+            <div class="row">
+              <div class="offset-md-2 col-md-4 form-group">
+                  <label class="form-label" for="">Email Id:</label>
+                  <input type="email" name="email" class='form-control' >
+              </div>
+            </div>
+            <div class="row">
+              <div class="offset-md-2 col-md-4 form-group">
+                  <label class="form-label" for="">Enter New Password :</label>
+                  <input type="password" name="new_password_1" class='form-control' >
+              </div>
+            </div>
+            <div class="row">
+              <div class="offset-md-2 col-md-4 form-group">
+                  <label class="form-label" for="">Confirm New Password</label>
+                  <input type="password" name="new_password_2"  class='form-control' >
+              </div>
+            </div>
+            <!-- Buttons -->
+            <div class="text-center mt-4">
+                <input type="submit" value="Reset password" class="btn btn-primary login">
+                <input type="reset" value="Cancel" class="btn btn-danger cancel" >
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock%}

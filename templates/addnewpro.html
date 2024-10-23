@@ -1,0 +1,154 @@
+{% extends 'adminbase.html' %}
+{% block b2 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Information</title>
+    <style>
+        .myform {
+            width: 80%;
+            max-width: 800px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+
+        .label20 {
+            margin-bottom: 10px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+
+        .span10 {
+            display: inline-block;
+            width: 48%;
+            margin-bottom: 5px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        .button10 {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .h100{
+            margin-top: 15px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+  <h2 class=" text-center h100">Add New Property</h2>
+    <form method="post" enctype="multipart/form-data" class="myform">
+      {% csrf_token%}
+        <label class="label20" for="property-name">
+            <span class="span10">Property Name:</span>
+            <input type="text" id="property-name" name="property-name" required>
+        </label>
+        <label class="label20" for="property-type">
+    <span class="span10">Property Type:</span>
+    <select id="property-type" name="property-type" required>
+        <option value="" disabled selected>Please Select</option>
+        <option value="Appartment">Appartment</option>
+        <option value="Independent Floor">Independent Floor</option>
+        <option value="Builder Floor">Builder Floor</option>
+        <option value="Villa">Villa</option>
+     </select>
+     </label>
+     <label class="label20" for="status-name">
+   <span class="span10">Status Name:</span>
+   <select id="status-name" name="status-name" required>
+       <option value="" disabled selected>Please Select</option>
+       <option value="Ready to Move">Ready to Move</option>
+       <option value="Resale">Resale</option>
+       <option value="Under Construction">Under Construction</option>
+      </select>
+      </label>
+        <label  class="label20" for="property-cost">
+            <span class="span10">Property Cost:</span>
+            <input type="number" id="property-cost" name="property-cost"  required>
+        </label>
+
+        <label class="label20" for="property-size">
+            <span class="span10">Property Size:</span>
+            <input type="text" id="property-size" name="property-size" required>
+        </label>
+
+        <label  class="label20"for="seller-contact-details">
+            <span class="span10">Property Contact Details:</span>
+            <input type="tel" id="seller-contact-details" name="seller-contact-details" required pattern="[6-9]\d{9}" title="Please enter a valid 10-digit contact number">
+        </label>
+
+        <label  class="label20"for="email-property">
+            <span class="span10">Property Contact Email</span>
+            <input type="email" id="email-property" name="email-property" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address">
+        </label>
+        <label  class="label20"for="property-amenities">
+            <span class="span10">Property Amenities:</span>
+            <input type="text" id="property-amenities" name="property-amenities" required>
+        </label>
+        <label  class="label20"for="property-specifications">
+            <span class="span10">Property Specifications:</span>
+            <input type="text" id="property-specifications" name="property-specifications" required>
+        </label>
+        <label class="label20" for="property-total-rooms">
+            <span class="span10">Property Total Rooms:</span>
+            <input type="number" id="property-total-rooms" name="property-total-rooms" required>
+        </label>
+        <label  class="label20"for="property-balcony">
+            <span class="span10">Property Balcony:</span>
+            <input type="text" id="property-balcony" name="property-balcony" required>
+        </label>
+
+        <label class="label20" for="property-total-bathrooms">
+            <span class="span10">Property Total Bathrooms:</span>
+            <input type="number" id="property-total-bathrooms" name="property-total-bathrooms" required>
+        </label>
+
+        <label class="label20" for="property-address">
+            <span class="span10">Property Address:</span>
+            <input type="text" id="property-address" name="property-address" required>
+        </label>
+
+        <label class="label20" for="property-image-upload-type">
+            <span class="span10">Property Image:</span>
+            <input type="file" id="property-image-upload-type" name="property-image-upload-type" required accept="image/*">
+        </label>
+
+        <label  class="label20" for="property-description">
+            <span class="span10">Property Description:</span>
+            <textarea id="property-description" name="property-description" rows="4" required></textarea>
+        </label>
+
+        <button class="button10" type="submit">Submit</button>
+    </form>
+
+
+    <!-- JavaScript CDN -->
+
+
+</body>
+</html>
+{% endblock %}

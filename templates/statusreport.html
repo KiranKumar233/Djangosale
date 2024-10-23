@@ -1,0 +1,113 @@
+{% extends 'adminbase.html' %}
+{% block b2 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+        <style>
+
+
+            .displaybody {
+                background-color: #f4f4f4;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+
+            th, td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .btn {
+                text-decoration: none;
+                padding: 10px 15px;
+                margin-right: 10px;
+            }
+
+            @media screen and (max-width: 767px) {
+                th, td {
+                    display: block;
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+
+                th, td {
+                    text-align: left;
+                }
+
+                th, td {
+                    padding: 8px;
+                }
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+
+                .btn {
+                    display: block;
+                    margin: 10px 0;
+                }
+            }
+        </style>
+    </head>
+
+    <body class="displaybody">
+
+        <div class="container">
+            <h1 class="text-center mb-4">Status Details</h1>
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Status Name</th>
+                        <th>Status Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in report %}
+                        <tr>
+                            <td>{{ i.id }}</td>
+                            <td>{{ i.status_name }}</td>
+                            <td>{{ i.status_description }}</td>
+                            <td>
+                                <button class="btn btn-outline-success"><a href="#">Edit</a></button>
+                                <button class="btn btn-outline-danger"><a href="#">Delete</a></button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </body>
+
+    </html>
+
+
+{% endblock %}

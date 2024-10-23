@@ -1,0 +1,126 @@
+{% extends 'adminbase.html' %}
+{% load static %}
+{% block b2 %}
+
+    <div class="container-fluid mt-3">
+
+        <form class="offset-md-2 col-md-8 registration-form" method="post" action="{% url 'myaccount' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row bg-primary">
+                <h3 class="offset-md-4 text-white" style='border-radius:50%'>Account Details</h3>
+            </div>
+            <div class="alert text-center">
+                {% if message %}
+                <strong class="text-danger">{{ msg }}</strong>
+                {% endif %}
+            </div>
+
+            <!-- first row -->
+            <div class="row">
+                <div class="offset-md-1 col-md-4 top">
+                    <label class="form-label" for="">Name:</label>
+                    <input type="text" name="client_name" value="{{user.client_name}}" class='form-control' >
+                </div>
+
+                <div class="offset-md-2 col-md-4 form-group">
+                    {% if user.client_picture %}
+                    <img src="{{user.client_picture.url}}" style="height: 6rem; width: 6em; border-radius: 50%;" alt="Profile picture">
+                    {% else %}
+                    <img src="" style="height: 6rem; width: 6em;" alt="No Profile picture">
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- second row -->
+            <div class="row">
+                <div class="offset-md-1 col-md-4 form-group">
+                </div>
+                <div class="offset-md-2 col-md-4 form-group">
+                </div>
+            </div>
+
+            <!-- third row -->
+            <div class="row">
+                <div class="offset-md-1 col-md-4 form-group">
+                    <label class="form-label" for="">Gender:</label>  <br>
+                    <input type="text" name="client_gender" value="{{user.client_gender}}" class='form-control' >
+                </div>
+                <div class="offset-md-2 col-md-4 form-group">
+                    <label class="form-label" for="">Email ID:</label>
+                    <input type="email" name="client_email" value="{{user.client_email}}" class='form-control' >
+                </div>
+            </div>
+
+            <!-- fourth row -->
+            <div class="row">
+                <div class="offset-md-1 col-md-4 form-group">
+                    <label class="form-label" for="">Mobile Number:</label>
+                    <input type="number" name="client_number" value="{{user.client_number}}" class='form-control' >
+                </div>
+                <div class="offset-md-2 col-md-4 form-group">
+                    <label class="form-label" for="">Date of birth:</label>
+                    <input type="text" name="client_DOB" value="{{user.client_DOB}}" class='form-control' required>
+                </div>
+            </div>
+            <!-- fifth row -->
+            <div class="row">
+                <div class="offset-md-1 col-md-4 form-group">
+                    <label class="form-label" for="">Address1:</label>
+                    <input type="text" name="client_address1" value="{{user.client_address1}}" class='form-control' >
+                </div>
+                <div class="offset-md-2 col-md-4 form-group">
+                    <label class="form-label" for="">Address2:</label>
+                    <input type="text" name="client_address2" value="{{user.client_address2}}" class='form-control' >
+                </div>
+            </div>
+
+            <!-- sixth row -->
+            <div class="row">
+                <div class="offset-md-1 col-md-4 form-group">
+                    <label class="form-label" for="">City:</label>
+                    <input type="text" name="client_city" value="{{user.client_city}}" class='form-control' >
+                </div>
+                <div class="offset-md-2 col-md-4 form-group">
+                    <label class="form-label" for="">State:</label>
+                    <input type="text" name="client_state" value="{{user.client_state}}" class='form-control' >
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="offset-md-1 col-md-4 form-group">
+                    <label class="form-label" for="">Country:</label>
+                    <input type="text" name="client_country" value="{{user.client_country}}" class='form-control' >
+                </div>
+                <div class="offset-md-2 col-md-4 form-group">
+                    <label class="form-label" for="">Profile Picture:</label>
+                    <input type="file" name="client_picture" value="" class='form-control'>
+                </div>
+            </div>
+
+            <!-- button row -->
+            <div class="text-center submit-btn">
+                <div class="text-center submit-btn">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Save</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                <p>Do you want to save the change(s) ? </p>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                <button type="submit" class="btn btn-primary">Yes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="reset" class='btn btn-danger'  value="Cancel">
+                </div>
+            </div> <!-- button row -->
+        </form> <!--End form-->
+    </div>
+
+
+{% endblock %}

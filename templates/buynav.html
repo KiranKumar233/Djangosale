@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lemon&family=Merriweather:wght@700&family=Salsa&display=swap');
+
+        .navbar {
+            background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(14, 174, 87, 1) 0%, rgba(12, 116, 117, 1) 90%);
+        }
+
+        .navbar-brand {
+            color: white;
+        }
+
+        .navbar-brand .upper {
+            color: white;
+            text-shadow: 2px 2px black;
+        }
+
+        .navbar-brand .cname {
+            font-family: 'Lemon', serif;
+            font-family: 'Merriweather', serif;
+            font-family: 'Salsa', cursive;
+            color: white;
+        }
+
+        .navbar-brand .comp {
+            font-size: 30px;
+            color: #0e0d06;
+        }
+
+        .navbar-nav .nav-link {
+            color: white;
+            margin-right: 15px;
+        }
+
+        .nav-element {
+            color: white;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .col {
+                flex: 1 0 50%;
+            }
+        }
+
+        @media only screen and (max-width: 576px) {
+            .col {
+                flex: 1 0 100%;
+            }
+        }
+    </style>
+    <title>Dashboard</title>
+</head>
+
+<body class="navbarbody">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white cname" href="#">
+                <p class="comp"><span class="upper">P</span>roperty <span class="upper">S</span>ales <span
+                        class="upper">M</span>anagement</p>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link active ml-2" aria-current="page" href="{% url 'buyerhome' %}">
+                        <b class="nav-element">Home</b>
+                      </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ml-2" href="{% url 'buyerabout' %}"><b class="nav-element">About</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ml-2" href="{% url 'buyerdashboard' %}"><b class="nav-element">Dashboard</b></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle ml-2" href="" id="navbardrop"
+                            data-toggle="dropdown">
+                            <b class="nav-element">Property</b>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'buyerallproperty' %}">All Property</a>
+                            <a class="dropdown-item" href="{% url 'buyerappartment' %}">Appartment</a>
+                            <a class="dropdown-item" href="{% url 'buyerindependent' %}">Independent Floor</a>
+                            <a class="dropdown-item" href="{% url 'buyerbuilderfloor' %}">Bulider Floor</a>
+                            <a class="dropdown-item" href="{% url 'buyervilla' %}">Villa</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle ml-2" href="#" id="navbardrop" data-toggle="dropdown">
+                            <b class="nav-element">My Administration</b>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'my_enquiry_view' %}">My Enquiry</a>
+                            <a class="dropdown-item" href="{% url 'post_property' %}">Post Property</a>
+                            <a class="dropdown-item" href="{% url 'myproperty' %}">My Property</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle ml-2" href="#" id="navbardrop" data-toggle="dropdown">
+                            <b class="nav-element">My Accounts</b>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'buyer_acc_details' %}">Accounts Details</a>
+                            <a class="dropdown-item" href="{% url 'buyer_changepass' %}">Change Password</a>
+                        </div>
+                    </li>
+                    <li>
+                        {% if user.is_authenticated %}
+                        <button id="username"
+                            style="margin-top: 11px; background-color:rgb(171,219,227); color: black;"> <strong>Hello
+                                </strong>{{user.username}} </button>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ml-2" href="{% url 'logout' %}"><b class="nav-element">Logout</b></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+{% extends 'adminbase.html' %}
+{% block b2 %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Properties</title>
+    <!-- Add your styles and imports here -->
+    <!-- Add this line to include Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-qVeIe6QAF9EdWphmKPKRA5bEXtGGBYYgP7OvB1TymRtObuG6H/4iSnpPM/OJ2F9Dsmyslqjso4uU2MK6di9NHg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lemon&family=Merriweather:wght@700&family=Salsa&display=swap');
+    .displaybody {
+        font-family: 'Merriweather', serif;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th,
+    td {
+        padding: 12px;
+        text-align: center; /* Center the content in td */
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .btn {
+        text-decoration: none;
+        padding: 10px 15px;
+        margin-right: 10px;
+    }
+
+    @media screen and (max-width: 767px) {
+        th,
+        td {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        th,
+        td {
+            text-align: center; /* Center the content in td for smaller screens */
+            padding: 8px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .btn {
+            display: block;
+            margin: 10px 0;
+        }
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+    }
+
+    .modal-header {
+        /* Add your modal header styles here */
+    }
+
+    .modal-body {
+        margin-bottom: 20px;
+    }
+
+    .modal-footer {
+        text-align: right;
+    }
+
+    .confirmation-button {
+        padding: 10px 15px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .confirm {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+    }
+
+    .cancel {
+        background-color: #6c757d;
+        color: #fff;
+        border: none;
+    }
+    </style>
+</head>
+
+<body class="displaybody">
+  <div class="container">
+      <h1 class="text-center mb-4">Property List</h1>
+      <table class="table">
+          <thead class="thead-light">
+              <tr class="text-center">
+                  <th>ID</th>
+                  <th>Image</th>
+                  <th>Seller Name</th>
+                  <th>Property Type</th>
+                  <th>Status Name</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for property in properties %}
+              <tr>
+                  <td class="td">{{ property.id }}</td>
+                  <td class="td"><img src="{{ property.property_image.url }}" alt="Property Image" width="200"></td>
+                  <td class="td">{{ property.seller_name }}</td>
+                  <td class="td">{{ property.property_type }}</td>
+                  <td class="td">{{ property.status_name }}</td>
+
+                  <td class="td">
+                    <!-- Edit icon -->
+                      <a href="{% url 'editprop' id=property.id %}" class="btn btn-link">
+                        <i class="fas fa-edit text-success"></i>
+                      </a>
+                      <!-- Delete icon -->
+                      <a href="{% url 'delete' property.id %}" class="btn btn-link">
+                          <i class="fas fa-trash-alt text-danger"></i>
+                      </a>
+
+                  </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+  </div>
+  
+  <!-- Modal for delete confirmation -->
+
+
+
+
+  </body>
+  </html>
+  {% endblock %}

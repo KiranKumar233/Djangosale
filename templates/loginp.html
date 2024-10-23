@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block b1 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Exact styles from your original code */
+        .form-div {
+            margin: 4rem auto;
+        }
+        .form1 {
+            border: 1px solid black;
+            padding: 2rem;
+            border-radius: 7px;
+            box-shadow: 0 0 10px black;
+            background: #F7F8F8;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #ACBB78, #F7F8F8);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #ACBB78, #F7F8F8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        .login {
+            background-color: blue;
+            box-shadow: 0 0 4px blue;
+        }
+        .cancel {
+            background-color: red;
+            box-shadow: 0 0 4px red;
+            margin-left: 3px;
+        }
+        .body {
+            background-color: #8EC5FC;
+            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+        }
+        .h1 {
+            margin-top: 70px;
+        }
+        .text-danger {
+            color: red;
+        }
+    </style>
+</head>
+<body class="body">
+    <h1 class="text-center h1">Login Here</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container-fluid contain">
+            <div class="row">
+                <div class="offset-md-4 col-md-4 form1">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-center text-danger">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    <label>Username</label>
+                    <input type="text" name="user" class="form-control">
+                    <label>Password</label>
+                    <input type="password" name="pass" class="form-control">
+                    <label class="form-label" for="">client_type:</label><br>
+                    <input type="radio" name="client_type" value="Buyer"> Buyer
+                    <input type="radio" name="client_type" value="Seller"> Seller
+                    <div class="text-center mt-4">
+                        <input type="submit" value="Login" class="btn btn-primary login">
+                        <input type="reset" value="Cancel" class="btn btn-danger cancel"><br>
+                        <span>Don't have an account? <a href="{% url 'registration' %}">Sign up</a></span><br>
+                        <a href="sellforgetpass">Forgot password</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+{% endblock %}

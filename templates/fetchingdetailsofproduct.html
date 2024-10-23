@@ -1,0 +1,177 @@
+{% extends 'buybase.html' %}
+{% block b3 %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details</title>
+    <style>
+        .property-body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .property-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        .property-image-container {
+            flex: 1;
+            max-width: 50%;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .property-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .property-image:hover {
+            transform: scale(1.1);
+        }
+
+        .property-details-container {
+            flex: 1;
+            max-width: 50%;
+            padding: 20px;
+        }
+
+        .property-name {
+            color: #0066cc;
+            font-size: 28px;
+            margin-bottom: 30px;
+            margin-left: 150px;
+            margin-top: 20px; /* Adjusted margin-top */
+        }
+
+        .property-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: -20px; /* Adjusted margin-top */
+        }
+
+        .property-details-left,
+        .property-details-right {
+            width: 48%; /* Adjust the width based on your preference */
+        }
+
+        .property-info {
+            color: #555555;
+            margin-bottom: 10px;
+            margin-top: 20px; /* Adjusted margin-top */
+        }
+
+        .property-contact-details,
+        .property-description {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .property-details p {
+            margin: 10px 0;
+        }
+
+        .property-go-back-link {
+            color: #009688;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .property-go-back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .property-container {
+                flex-direction: column;
+            }
+
+            .property-image-container,
+            .property-details-container {
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .property-details-left,
+            .property-details-right {
+                width: 100%;
+            }
+        }
+    </style>
+    <script>
+        // JavaScript function to display pop-up
+        function showPopup(message) {
+            alert(message);
+        }
+    </script>
+</head>
+
+<body class="property-body">
+
+    <div class="property-container">
+
+        <!-- Display Property Image on the left side -->
+        <div class="property-image-container">
+            <img src="{{ property_data.property_image.url }}" alt="{{ property_data.property_name }}"
+                class="property-image">
+        </div>
+
+        <!-- Display Property Details on the right side in a rectangle shape -->
+        <div class="property-details-container">
+            <h2 class="property-name">{{ property_data.property_name }}</h2>
+
+            <div class="property-details">
+                <div class="property-details-left">
+                    <p class="property-info"><strong>Seller:</strong> {{ property_data.seller_name }}</p>
+                    <p class="property-info"><strong>Type:</strong> {{ property_data.property_type }}</p>
+                    <p class="property-info"><strong>Status:</strong> {{ property_data.status_name }}</p>
+                    <p class="property-info"><strong>Cost:</strong> {{ property_data.property_cost }}</p>
+                    <p class="property-info"><strong>Size:</strong> {{ property_data.property_size }}</p>
+                    <p class="property-info property-contact-details"><strong>Contact Details:</strong> {{ property_data.seller_contact_details }}</p>
+                    <p class="property-info"><strong>Email:</strong> {{ property_data.email_property }}</p>
+                </div>
+
+                <div class="property-details-right">
+                    <p class="property-info"><strong>Amenities:</strong> {{ property_data.property_amenities }}</p>
+                    <p class="property-info"><strong>Specifications:</strong> {{ property_data.property_specifications }}</p>
+                    <p class="property-info"><strong>Total Rooms:</strong> {{ property_data.property_total_rooms }}</p>
+                    <p class="property-info"><strong>Balcony:</strong> {{ property_data.property_balcony }}</p>
+                    <p class="property-info"><strong>Total Bathrooms:</strong> {{ property_data.property_total_bathrooms }}</p>
+                    <p class="property-info"><strong>Address:</strong> {{ property_data.property_address }}</p>
+                    <p class="property-info property-description"><strong>Description:</strong> {{ property_data.property_description }}</p>
+                </div>
+            </div>
+
+            <!-- Add a link to go back or navigate to another page if needed -->
+            <div class="offset-md-4 col-md-6">
+
+                <a href="{% url 'sendenquiry' property_data.id %}" class='btn btn-primary' onclick="showPopup('Enquiry sent successfully!')">Send Enquiry</a>
+
+                <a href="{% url 'add_post_property' property_data.id %}" class='btn btn-primary ' onclick="showPopup('Enquiry seved successfully!')">Add to Post-Enquiry</a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+{% endblock %}

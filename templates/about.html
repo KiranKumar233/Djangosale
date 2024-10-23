@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block b1 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-T6uHAzNLD8WmrVwZjlll/yd2QIgMIGOhdJS3jYL0ZzKgJd6YenJ0wzwCn3MCtFS" crossorigin="anonymous">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+    <title>Document</title>
+</head>
+<style>
+
+.c10 {
+margin-top: 80px;
+}
+.c20 {
+margin-top: 80px;
+}
+.description {
+color: black;
+font-family: 'Arial', sans-serif;
+}
+.ab1{
+margin-bottom: -50px;
+}
+
+</style>
+
+<body>
+
+  <h2 id="about-section" class="about-heading ab1 text-center">About</h2>
+  <div class="row">
+      <div class="col-md-4 c10 ">
+          <img src="{% static 'images/guru5.jpg'%}" alt="" width="100%" height="60%" class="bordered-image" onclick="showImageDescription(this)">
+      </div>
+      <div class="col-md-8 c20">
+          <p class="description">Real Estate Management System (REMS) is an online real estate software application that manages the overall operational activities and processes, starting from the management of the property, to the management of real estate agencies, agents, clients and financial transactions. It provides comprehensive reports for managing the Real Estate agency performance and efficiency, and enables the management for better decision-making.In a Property Sale Management System, let's consider a commercial property with the ID CP789, located at 456 Business Avenue in Metropolis City. This 5,000 sq. ft. commercial office space, listed by Agent Sarah Johnson (Agent ID 987) on February 5, 2024 (Listing ID L456), boasts features like open workspaces and conference rooms. XYZ Corporation is the buyer, and the seller is Commercial Real Estate Holdings LLC. The property was sold for $1,150,000 in installments over 12 months, with a sale date of April 15, 2024. Legal documents, including commercial lease agreements and an inspection report received on March 10, 2024, are part of the transaction. Agent Sarah Johnson, known for her expertise in commercial real estate, earned a 2.5% commission. User accounts involve an admin, Sarah Johnson, XYZ Corporation as the buyer, and Commercial Real Estate Holdings LLC as the seller. Communication records include negotiation emails and notifications providing updates on payment schedules and crucial milestones. Analytics and reports track sales trends, financial analyses, and key performance metrics like occupancy rates and rental history. The calendar and scheduling system manage property tours and important dates such as the closing date and payment due dates. Feedback from XYZ Corporation highlights the property's appealing amenities, contributing to a positive 4.5-star review for Agent Sarah Johnson's professionalism. The marketing strategy involves online listings and targeted outreach to businesses, generating inquiries from companies seeking office space. Geolocation data ensures the property is accurately mapped within the commercial district of Metropolis City, providing insight into local market trends such as average rental rates for commercial properties in the area. This comprehensive approach showcases the intricate details managed within the Property Sale Management System for this commercial property.</p>
+      </div>
+  </div>
+
+
+</body>
+</html>
+{% endblock %}

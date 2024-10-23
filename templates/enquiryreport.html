@@ -1,0 +1,102 @@
+{% extends 'adminbase.html' %}
+
+{% block b2 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquiry Report</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Custom CSS */
+        .buyer-image {
+            max-width: 150px;
+            height: auto;
+            cursor: pointer; /* Change cursor to pointer on hover */
+            transition: transform 0.3s ease-in-out; /* Smooth transition */
+        }
+        .buyer-image:hover {
+            transform: scale(0.8); /* Decrease size on hover */
+        }
+        .table-bordered {
+            border: 2px solid #dee2e6;
+        }
+        .table-bordered thead th,
+        .table-bordered tbody td {
+            border: 2px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Enquiry Report</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Buyer Image</th>
+                    <th>Buyer Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>Date of Birth</th>
+                    <th>Property ID</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enquiry in enquiryrep %}
+                <tr>
+                    <td>
+                        {% if enquiry.buy_image %}
+                            <img src="{{ enquiry.buy_image.url }}" alt="Buyer Image" class="buyer-image" data-toggle="modal" data-target="#imageModal">
+                        {% else %}
+                            No Image Available
+                        {% endif %}
+                    </td>
+                    <td>{{ enquiry.buyer_name }}</td>
+                    <td>{{ enquiry.buy_mobile }}</td>
+                    <td>{{ enquiry.buy_email }}</td>
+                    <td>{{ enquiry.buy_dob }}</td>
+                    <td>{{ enquiry.property_id }}</td>
+
+                    <td><a href="{% url 'viewflat' enquiry.property_id %}">view details</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <img src="" alt="Zoomed Image" id="zoomedImage" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+
+<script>
+    // JavaScript for handling image zoom
+    $(document).ready(function() {
+        $('.buyer-image').click(function() {
+            var imageUrl = $(this).attr('src');
+            $('#zoomedImage').attr('src', imageUrl);
+            $('#imageModal').modal('show');
+        });
+    });
+</script>
+
+</body>
+</html>
+{% endblock %}

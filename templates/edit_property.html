@@ -1,0 +1,164 @@
+{% extends 'adminbase.html' %}
+{% block b2 %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Property</title>
+    <!-- Add your styles and imports here -->
+    
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lemon&family=Merriweather:wght@700&family=Salsa&display=swap');
+    .newpropertybody {
+        font-family: 'Merriweather', serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #f0f0f0;
+    }
+    .property-form {
+        width: 80%;
+        max-width: 800px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f5f5f5;
+        display: flex;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .unique-label {
+        margin-bottom: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .unique-span {
+        display: inline-block;
+        width: 48%;
+        margin-bottom: 5px;
+    }
+
+    .unique-input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+    }
+
+    .unique-submit {
+        background-color: #3498db;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .unique-heading {
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+    </style>
+</head>
+
+<body class="newpropertybody">
+
+    <h2 class="text-center unique-heading">Edit Property</h2>
+    <form method="post" enctype="multipart/form-data" class="property-form">
+        {% csrf_token %}
+        <input type="hidden" name="property-id" value="{{ property.id }}">
+
+        <label class="unique-label" for="seller-name">
+            <span class="unique-span">Seller Name:</span>
+            <input type="text" id="seller-name" name="seller-name" required class="unique-input" value="{{ property.seller_name }}" readonly>
+        </label>
+        <label class="unique-label" for="property-name">
+            <span class="unique-span">Property Name:</span>
+            <input type="text" id="property-name" name="property-name" required class="unique-input" value="{{ property.property_name }}">
+        </label>
+        <label class="unique-label" for="property-type">
+            <span class="unique-span">Property Type:</span>
+            <select id="property-type" name="property-type" required class="unique-input">
+                {% for choice in property.PROPERTY_TYPE_CHOICES %}
+                    <option value="{{ choice.0 }}" {% if choice.0 == property.property_type %}selected{% endif %}>{{ choice.1 }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label class="unique-label" for="status-name">
+            <span class="unique-span">Status Name:</span>
+            <select id="status-name" name="status-name" required class="unique-input">
+                {% for choice in property.STATUS_CHOICES %}
+                    <option value="{{ choice.0 }}" {% if choice.0 == property.status_name %}selected{% endif %}>{{ choice.1 }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <!-- Add other fields with their current values -->
+        <!-- ... -->
+
+        <label class="unique-label" for="property-cost">
+            <span class="unique-span">Property Cost:</span>
+            <input type="number" id="property-cost" name="property-cost" required class="unique-input" value="{{ property.property_cost }}">
+        </label>
+        <label class="unique-label" for="property-size">
+            <span class="unique-span">Property Size:</span>
+            <input type="text" id="property-size" name="property-size" required class="unique-input" value="{{ property.property_size }}">
+        </label>
+        <label class="unique-label" for="seller-contact-details">
+            <span class="unique-span">Property Contact Details:</span>
+            <input type="tel" id="seller-contact-details" name="seller-contact-details" required pattern="[6-9]\d{9}" title="Please enter a valid 10-digit contact number" class="unique-input" value="{{ property.seller_contact_details }}">
+        </label>
+        <label class="unique-label" for="email-property">
+            <span class="unique-span">Property Contact Email:</span>
+            <input type="email" id="email-property" name="email-property" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address" class="unique-input" value="{{ property.email_property }}">
+        </label>
+        <label class="unique-label" for="property-amenities">
+            <span class="unique-span">Property Amenities:</span>
+            <input type="text" id="property-amenities" name="property-amenities" required class="unique-input" value="{{ property.property_amenities }}">
+        </label>
+        <label class="unique-label" for="property-specifications">
+            <span class="unique-span">Property Specifications:</span>
+            <input type="text" id="property-specifications" name="property-specifications" required class="unique-input" value="{{ property.property_specifications }}">
+        </label>
+        <label class="unique-label" for="property-total-rooms">
+            <span class="unique-span">Property Total Rooms:</span>
+            <input type="number" id="property-total-rooms" name="property-total-rooms" required class="unique-input" value="{{ property.property_total_rooms }}">
+        </label>
+        <label class="unique-label" for="property-balcony">
+            <span class="unique-span">Property Balcony:</span>
+            <input type="text" id="property-balcony" name="property-balcony" required class="unique-input" value="{{ property.property_balcony }}">
+        </label>
+        <label class="unique-label" for="property-total-bathrooms">
+            <span class="unique-span">Property Total Bathrooms:</span>
+            <input type="number" id="property-total-bathrooms" name="property-total-bathrooms" required class="unique-input" value="{{ property.property_total_bathrooms }}">
+        </label>
+        <label class="unique-label" for="property-address">
+            <span class="unique-span">Property Address:</span>
+            <input type="text" id="property-address" name="property-address" required class="unique-input" value="{{ property.property_address }}">
+        </label>
+        <label class="unique-label" for="property-image-upload-type">
+    <span class="unique-span">Property Image:</span>
+    <input type="file" id="property-image-upload-type" name="property-image-upload-type" accept="image/*" class="unique-input">
+</label>
+<img src="{{ property.property_image.url }}" alt="Current Property Image" width="200">
+        <label class="unique-label" for="property-description">
+            <span class="unique-span">Property Description:</span>
+            <textarea id="property-description" name="property-description" rows="4" required class="unique-input">{{ property.property_description }}</textarea>
+        </label>
+
+        <button class="unique-submit" type="submit">Update Property</button>
+
+         </form>
+    <br>
+
+</body>
+
+</html>
+{% endblock %}

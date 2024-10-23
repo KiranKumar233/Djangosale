@@ -1,0 +1,98 @@
+<!-- cart_items.html -->
+{% extends 'buybase.html' %}
+{% block  b3  %}
+<!-- cart_items.html -->
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            background-color: #fff;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-details {
+            padding: 15px;
+        }
+
+        .price {
+            color: #666;
+            text-align: right;
+            margin-right: 15px;
+        }
+
+        .empty-cart {
+            color: #999;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .img-container {
+            max-width: fit-content;
+            max-height: fit-content;
+            margin: 1.5rem;
+        }
+
+        .btn-del {
+            margin-top: 1rem;
+            text-align: right;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mr. {{ user.username }}'s Post Reports</h1>
+        <!-- Cart items -->
+        {% if post_properties %}
+            {% for property in post_properties %}
+                <div class="cart-item row">
+                    <div class="col-md-4">
+                        <!-- Product image -->
+                        <div class="img-container">
+                            <img src="{{ property.property.property_image.url }}" alt="{{ item.property.name }}" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-md-6 item-details">
+                        <!-- Product details -->
+                        <h2>{{ property.property.property_name }}</h2>
+                        <p>Desc: {{ property.property.property_description }}</p>
+                        <p>Size: {{ property.property.property_size }}</p>
+                        <p><span>Ph. {{ property.property.seller_contact_details }},</span><span> Total Rooms : {{ property.property.property_total_rooms }},</span><span></span></p>
+                        <div class="price">
+                            <p>Price: ₹ {{ property.property.property_cost }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <!-- Buy button -->
+                        <div class="btn-del">
+                            <a href="{% url 'del_from_post_property' property.property.id %}" class="btn btn-danger" >Delete</a>
+                            <a href="{% url 'sendenquiry' property.property.id %}" class='btn btn-primary mt-3 mb-3' onclick="showPopup('Enquiry sent successfully!')">Send Enquiry</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="empty-cart">Your cart is empty</p>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+{% endblock %}

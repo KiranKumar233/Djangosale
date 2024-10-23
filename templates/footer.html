@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic templates</title>
+     <!-- Cdn-lines for bootstrap4 -->
+
+    <!-- for fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+</head>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+    footer{
+      font-family:'Merriweather', serif;
+    }
+
+    .footer-head{
+      color: #351F39;
+    }
+    .footer-p{
+      color: white ;
+    }
+
+    .footer-a {
+      color: white;
+    }
+    .bottom{
+      padding: 1.2rem;
+    }
+    .footer{
+        background-color: #106e69;
+    }
+
+    .shfooter .collapse {
+      display: inherit;
+    }
+    @media (max-width: 767px) {
+      .shfooter ul {
+        margin-bottom: 0;
+      }
+
+      .shfooter .collapse {
+        display: none;
+      }
+
+      .shfooter .collapse.show {
+        display: block;
+      }
+
+      .shfooter .title .fa-angle-up,
+      .shfooter .title[aria-expanded="true"] .fa-angle-down {
+        display: none;
+      }
+
+      .shfooter .title[aria-expanded="true"] .fa-angle-up {
+        display: block;
+      }
+
+      .shfooter .navbar-toggler {
+        display: inline-block;
+        padding: 0;
+      }
+    }
+
+    .resize {
+      text-align: center;
+    }
+    .resize {
+      margin-top: 3rem;
+      font-size: 1.25rem;
+    }
+    /*RESIZESCREEN ANIMATION*/
+    .fa-angle-double-right {
+      animation: rightanime 1s linear infinite;
+    }
+
+    .fa-angle-double-left {
+      animation: leftanime 1s linear infinite;
+    }
+
+    a:hover{
+      color: #e7e7e1;
+    }
+
+    </style>
+<body>
+
+    <footer id="footer" class="footer text-white d-flex-column text-center">
+        <hr class="mt-0">
+        <!--Footer Links-->
+        <div class="container text-left text-md-center">
+          <div class="row">
+            <!--First column-->
+            <div class="col-md-3 mx-auto shfooter">
+              <h5 class=" footer-head my-2 font-weight-bold d-none d-md-block">Contact Info</h5>
+              <div class="d-md-none title" data-target="#Product" data-toggle="collapse">
+                <div class="mt-3 font-weight-bold">Contact Info
+                  <div class="float-right navbar-toggler">
+                    <i class="fas fa-angle-down"></i>
+                    <i class="fas fa-angle-up"></i>
+                  </div>
+                </div>
+              </div>
+              <ul class="list-unstyled collapse" id="Product">
+                <li>Naga-Sahi-Nivas, Aster Prime Hospital lane</li>
+                <li>Hyderabad </li>
+                <li>+91 9070106070 </li>
+                <li>www.propertymanagement.com</li>
+                <li>propert@gmail.com </li>
+              </ul>
+            </div>
+            <!--/.First column-->
+            <hr class="clearfix w-100 d-md-none mb-0">
+            <!--Second column-->
+            <div class="col-md-3 mx-auto shfooter">
+              <h5 class=" footer-head my-2 font-weight-bold d-none d-md-block">Modules</h5>
+              <div class="d-md-none title" data-target="#Company" data-toggle="collapse">
+                <div class="mt-3 font-weight-bold">MOdules
+                  <div class="float-right navbar-toggler">
+                    <i class="fas fa-angle-down"></i>
+                    <i class="fas fa-angle-up"></i>
+                  </div>
+                </div>
+              </div>
+              <ul class="list-unstyled collapse" id="Company">
+                <li><a class="footer-a" href="#">Enquiry Module</a></li>
+                <li><a class="footer-a" href="#">User Module</a></li>
+                <li><a class="footer-a" href="#">Property Module</a></li>
+                <li><a class="footer-a" href="#">Login Module</a></li>
+              </ul>
+            </div>
+            <!--/.Second column-->
+            <hr class="clearfix w-100 d-md-none mb-0">
+            <!--Third column-->
+            <div class="col-md-3 mx-auto shfooter">
+              <h5 class=" footer-head my-2 font-weight-bold d-none d-md-block">Project Link</h5>
+              <div class="d-md-none title" data-target="#Resources" data-toggle="collapse">
+                <div class="mt-3 font-weight-bold">Project Link
+                  <div class="float-right navbar-toggler">
+                    <i class="fas fa-angle-down"></i>
+                    <i class="fas fa-angle-up"></i>
+                  </div>
+                </div>
+              </div>
+              <ul class="list-unstyled collapse" id="Resources">
+                <li><a class="footer-a" href="{% url 'homepage' %}">Home</a></li>
+                <li><a class="footer-a" href="{% url 'aboutpage' %}">About Us</a></li>
+                <li><a class="footer-a" href="{% url 'contactpage' %}">Contact </a></li>
+                <li><a class="footer-a" href="{% url 'loginpage' %}">Login</a></li>
+              </ul>
+            </div>
+            <!--/.Third column-->
+            <hr class="clearfix w-100 d-md-none mb-0">
+            <!--Fourth column-->
+            <div class="col-md-3 mx-auto shfooter">
+              <h5 class=" footer-head my-2 font-weight-bold d-none d-md-block">About Project</h5>
+              <div class="d-md-none title" data-target="#Get-Help" data-toggle="collapse">
+                <div class="mt-3 font-weight-bold">About Project
+                  <div class="float-right navbar-toggler">
+                    <i class="fas fa-angle-down"></i>
+                    <i class="fas fa-angle-up"></i>
+                  </div>
+                </div>
+              </div>
+              <ul class="list-unstyled collapse" id="Get-Help">
+                <li><p class="footer-p">Welcome to our property selling project where luxury meets opportunity. Discover a curated collection of residences, each meticulously designed for modern living. </p></li>
+
+              </ul>
+            </div>
+            <!--/.Fourth column-->
+          </div>
+        </div>
+        <!--/.Footer Links-->
+
+        <!--Social buttons-->
+        <div class="text-center">
+          <h4 class="footer-head" >You can find us at</h4>
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+                <!-- Facebook-link -->
+                <a class="footer-a" href="#!" class="sbtn btn-large mx-1" title="Facebook">
+                    <i class="fab fa-facebook-square fa-2x"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <!-- Linkedin-link -->
+              <a class="footer-a" href="#!" class="sbtn btn-large mx-1" title="Linkedin">
+                <i class="fab fa-linkedin fa-2x"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+                <!-- Twiter-link -->
+              <a class="footer-a" href="#!" class="sbtn btn-large mx-1" title="Twitter">
+                <i class="fab fa-twitter-square fa-2x"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+                <!-- Youtube-link -->
+              <a class="footer-a" href="#!" class="sbtn btn-large mx-1" title="Youtube">
+                <i class="fab fa-youtube-square fa-2x"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!--/.Social buttons-->
+        <hr class="mb-0">
+        <div class="bottom">
+          <p class="footer-p">&copy;Copyright 2023, AaramIt Solutions  </p>
+        </div>
+
+      </footer>
+
+
+</body>
+</html>

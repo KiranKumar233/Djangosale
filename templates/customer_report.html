@@ -1,0 +1,152 @@
+{% extends 'adminbase.html' %}
+
+{% block b2 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquiry Report</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Custom CSS */
+        .buyer-image {
+            max-width: 150px;
+            height: auto;
+            cursor: pointer; /* Change cursor to pointer on hover */
+            transition: transform 0.3s ease-in-out; /* Smooth transition */
+        }
+        .buyer-image:hover {
+            transform: scale(0.8); /* Decrease size on hover */
+        }
+        .table-bordered {
+            border: 2px solid #dee2e6;
+        }
+        .table-bordered thead th,
+        .table-bordered tbody td {
+            border: 2px solid #dee2e6;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Customer Report</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Buyer Image</th>
+                    <th>Buyer Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>Date of Birth</th>
+                    <th>Property ID</th>
+                    <th>Confirmation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enquiry in enquiryrep %}
+                <tr>
+                    <td>
+                        {% if enquiry.buy_image %}
+                            <img src="{{ enquiry.buy_image.url }}" alt="Buyer Image" class="buyer-image" data-toggle="modal" data-target="#imageModal">
+                        {% else %}
+                            No Image Available
+                        {% endif %}
+                    </td>
+                    <td>{{ enquiry.buyer_name }}</td>
+                    <td>{{ enquiry.buy_mobile }}</td>
+                    <td>{{ enquiry.buy_email }}</td>
+                    <td>{{ enquiry.buy_dob }}</td>
+                    <td>{{ enquiry.property_id }}</td>
+                    <td>
+                        <form id="form_{{ enquiry.id }}" class="buyer-form" method="POST" onsubmit="return confirmMessage('{{ enquiry.buyer_name }}', '{{ enquiry.buy_email }}', {{ enquiry.id }})">
+                            {% csrf_token %}
+                            <input type="radio" name="confirmation" value="Purchased"> Accept Enquiry
+                            <input type="radio" name="confirmation" value="Purchase Declined"> Decline Enquiry  <br>
+                            <input type="hidden" name="enquiry_id" value="{{ enquiry.id }}">
+                            <div class="text-center mt-2">
+                                <input type="submit" value="Confirm" class="btn btn-success">
+                            </div>
+                        </form>
+                        <p id="sold_message_{{ enquiry.id }}" class="hidden">Property sold</p>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <img src="" alt="Zoomed Image" id="zoomedImage" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    // JavaScript for handling image zoom
+    $(document).ready(function() {
+        $('.buyer-image').click(function() {
+            var imageUrl = $(this).attr('src');
+            $('#zoomedImage').attr('src', imageUrl);
+            $('#imageModal').modal('show');
+        });
+    });
+
+    // Flag variable to track if confirmation message has been displayed
+    var confirmationDisplayed = {};
+
+    // Function to show custom confirmation message
+    function confirmMessage(name, email, enquiryId) {
+        if (!confirmationDisplayed[enquiryId]) {
+            var confirmation = document.querySelector('#form_' + enquiryId + ' input[name="confirmation"]:checked').value;
+            if (confirmation === 'Purchased') {
+                confirmationDisplayed[enquiryId] = true;
+                document.querySelector('#form_' + enquiryId).classList.add('hidden');
+                document.querySelector('#sold_message_' + enquiryId).classList.remove('hidden');
+                return confirm("Please click 'OK' only if the payment is done to you by the buyer.\nBuyer Name: " + name + "\nBuyer Email: " + email);
+            } else if (confirmation === 'Purchase Declined') {
+                confirmationDisplayed[enquiryId] = true;
+                return confirm("Are you sure you want to decline the enquiry?");
+            }
+        }
+        return true; // Allow form submission if confirmation message has already been displayed
+    }
+
+    // Hiding forms from buyers and disabling form if already purchased
+    $(document).ready(function() {
+        // Replace 'is_seller' with a condition to identify if the current user is a seller
+        var isSeller = true; // Example condition, modify as per your setup
+
+        if (!isSeller) {
+            $('.buyer-form').hide();
+        }
+
+        // Disabling form if already purchased and replacing with "Property sold"
+        {% for enquiry in enquiryrep %}
+            {% if enquiry.confirmation == 'Purchased' %}
+                $('#form_{{ enquiry.id }}').addClass('hidden');
+                $('#sold_message_{{ enquiry.id }}').removeClass('hidden');
+            {% endif %}
+        {% endfor %}
+    });
+</script>
+
+</body>
+</html>
+{% endblock %}
