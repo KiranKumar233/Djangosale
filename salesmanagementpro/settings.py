@@ -131,3 +131,24 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# settings.py
+
+# Development-friendly host policy for short demos; use explicit hosts in production.
+ALLOWED_HOSTS = ["*"]
+
+# CSRF must list full scheme+host; wildcards for dynamic subdomains are supported in 4.x+.
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost",
+    "http://127.0.0.1",
+    "http://0.0.0.0",
+    "https://*.ngrok-free.app",
+    "https://*.ngrok.app",
+    "https://*.app.github.dev",
+    "https://*.trycloudflare.com",
+]
+
+# Honor HTTPS from reverse proxies/tunnels so CSRF origin checks work correctly.
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
